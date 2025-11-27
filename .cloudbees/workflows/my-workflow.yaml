@@ -9,11 +9,11 @@ on:
 jobs:
   build:
     steps:
-      - name: Echo Step A
-        uses: cloudbees-io/echo@v1
+      - name: Checkout Repo Main
+        uses: cloudbees-io/checkout@v1
         with:
-          message: "This is step A calling the echo action."
-      - name: Echo Step B
-        uses: cloudbees-io/echo@v1
+          ref: main
+      - name: Checkout Repo Feature
+        uses: cloudbees-io/checkout@v1
         with:
-          message: "This is step B calling the echo action."
+          ref: feature/test-branch
