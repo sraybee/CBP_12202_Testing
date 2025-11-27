@@ -11,9 +11,10 @@ jobs:
     steps:
       - name: Checkout Repo Main
         uses: cloudbees-io/checkout@v1
-        with:
-          ref: main
+
+      - name: Run Build
+        run: echo "Building the project..."
+        
       - name: Checkout Repo Feature
         uses: cloudbees-io/checkout@v1
-        with:
-          ref: CBP_12202_Test
+
