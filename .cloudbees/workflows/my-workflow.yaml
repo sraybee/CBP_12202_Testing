@@ -13,8 +13,9 @@ jobs:
         uses: cloudbees-io/checkout@v1
 
       - name: Run Build
+        uses: docker://alpine:3.18
+        shell: sh
         run: echo "Building the project..."
-        
+
       - name: Checkout Repo Feature
         uses: cloudbees-io/checkout@v1
-
