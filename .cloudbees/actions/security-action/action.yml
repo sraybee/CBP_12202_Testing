@@ -1,0 +1,18 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: action
+name: security-action
+description: Performs security audits and scans
+
+runs:
+  using: composite
+  steps:
+    - name: Run Dependency Scan
+      uses: docker://alpine:3.18
+      shell: sh
+      run: echo "Scanning dependencies..."
+
+    - name: Run SAST Analysis
+      uses: ./.cloudbees/actions/sast-action
+
+    - name: Run Container Scan
+      uses: ./.cloudbees/actions/container-scan-action

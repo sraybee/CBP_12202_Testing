@@ -1,0 +1,21 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: action
+name: build-action
+description: Builds the project with nested actions
+
+runs:
+  using: composite
+  steps:
+    - name: Checkout Source Code
+      uses: cloudbees-io/checkout@v1
+
+    - name: Setup Build Environment
+      uses: ./.cloudbees/actions/setup-action
+
+    - name: Compile Application
+      uses: docker://node:18-alpine
+      shell: sh
+      run: echo "Building application..."
+
+    - name: Run Unit Tests
+      uses: ./.cloudbees/actions/test-action

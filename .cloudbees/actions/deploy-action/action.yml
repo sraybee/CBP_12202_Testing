@@ -1,0 +1,23 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: action
+name: deploy-action
+description: Deploys to development environment
+
+runs:
+  using: composite
+  steps:
+    - name: Validate Configuration
+      uses: ./.cloudbees/actions/validation-action
+
+    - name: Build Docker Image
+      uses: docker://docker:24-alpine
+      shell: sh
+      run: echo "Building Docker image..."
+
+    - name: Push to Registry
+      uses: docker://docker:24-alpine
+      shell: sh
+      run: echo "Pushing to registry..."
+
+    - name: Deploy to Kubernetes
+      uses: ./.cloudbees/actions/k8s-deploy-action

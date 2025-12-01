@@ -1,0 +1,17 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: action
+name: health-check-action
+description: Verifies application health (nested action called by k8s-deploy-action)
+
+runs:
+  using: composite
+  steps:
+    - name: Check HTTP Endpoints
+      uses: docker://alpine:3.18
+      shell: sh
+      run: echo "Checking HTTP endpoints..."
+
+    - name: Verify Database Connection
+      uses: docker://alpine:3.18
+      shell: sh
+      run: echo "Verifying database..."

@@ -1,0 +1,20 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: action
+name: testing-action
+description: Runs end-to-end tests
+
+runs:
+  using: composite
+  steps:
+    - name: Setup Test Environment
+      uses: ./.cloudbees/actions/setup-action
+
+    - name: Run E2E Tests
+      uses: docker://node:18-alpine
+      shell: sh
+      run: echo "Running E2E tests..."
+
+    - name: Cleanup Test Data
+      uses: docker://alpine:3.18
+      shell: sh
+      run: echo "Cleaning up..."

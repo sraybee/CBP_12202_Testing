@@ -1,0 +1,20 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: action
+name: k8s-deploy-action
+description: Deploys to Kubernetes (nested action called by deploy-action)
+
+runs:
+  using: composite
+  steps:
+    - name: Apply Kubernetes Manifests
+      uses: docker://alpine:3.18
+      shell: sh
+      run: echo "Applying K8s manifests..."
+
+    - name: Wait for Rollout
+      uses: docker://alpine:3.18
+      shell: sh
+      run: echo "Waiting for rollout..."
+
+    - name: Verify Health Checks
+      uses: ./.cloudbees/actions/health-check-action

@@ -1,0 +1,15 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: action
+name: smoke-test-action
+description: Runs smoke tests on production (nested action called by production-deploy-action)
+
+runs:
+  using: composite
+  steps:
+    - name: Test Critical Paths
+      uses: docker://alpine:3.18
+      shell: sh
+      run: echo "Testing critical paths..."
+
+    - name: Verify Services
+      uses: ./.cloudbees/actions/health-check-action

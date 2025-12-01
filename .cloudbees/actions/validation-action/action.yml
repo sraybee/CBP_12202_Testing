@@ -1,0 +1,17 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: action
+name: validation-action
+description: Validates deployment configuration (nested action called by deploy-action)
+
+runs:
+  using: composite
+  steps:
+    - name: Validate YAML Files
+      uses: docker://alpine:3.18
+      shell: sh
+      run: echo "Validating YAML..."
+
+    - name: Check Resource Limits
+      uses: docker://alpine:3.18
+      shell: sh
+      run: echo "Checking resources..."

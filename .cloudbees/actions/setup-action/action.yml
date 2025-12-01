@@ -1,0 +1,17 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: action
+name: setup-action
+description: Sets up the environment (nested action called by build-action)
+
+runs:
+  using: composite
+  steps:
+    - name: Install System Dependencies
+      uses: docker://alpine:3.18
+      shell: sh
+      run: echo "Installing system dependencies..."
+
+    - name: Configure Environment Variables
+      uses: docker://alpine:3.18
+      shell: sh
+      run: echo "Setting up environment..."

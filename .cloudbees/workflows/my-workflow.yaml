@@ -1,6 +1,6 @@
 apiVersion: automation.cloudbees.io/v1alpha1
 kind: workflow
-name: My workflow
+name: Complex Nested Action Workflow
 on:
   push:
     branches:
@@ -9,13 +9,17 @@ on:
 jobs:
   build:
     steps:
-      - name: Checkout Repo Main
-        uses: cloudbees-io/checkout@v1
+      - name: Setup and Build Project
+        uses: ./.cloudbees/actions/build-action
 
-      - name: Run Build
-        uses: docker://alpine:3.18
-        shell: sh
-        run: echo "Building the project..."
+      - name: Deploy to Development
+        uses: ./.cloudbees/actions/deploy-action
 
-      - name: Checkout Repo Feature
-        uses: cloudbees-io/checkout@v1
+      - name: Run End-to-End Tests
+        uses: ./.cloudbees/actions/testing-action
+
+      - name: Security Audit and Scan
+        uses: ./.cloudbees/actions/security-action
+
+      - name: Deploy to Production
+        uses: ./.cloudbees/actions/production-deploy-action

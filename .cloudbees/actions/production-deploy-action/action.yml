@@ -1,0 +1,26 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: action
+name: production-deploy-action
+description: Deploys to production with validation and rollback capability
+
+runs:
+  using: composite
+  steps:
+    - name: Validate Production Readiness
+      uses: ./.cloudbees/actions/validation-action
+
+    - name: Create Backup
+      uses: docker://alpine:3.18
+      shell: sh
+      run: echo "Creating backup..."
+
+    - name: Deploy to Production
+      uses: ./.cloudbees/actions/k8s-deploy-action
+
+    - name: Run Smoke Tests
+      uses: ./.cloudbees/actions/smoke-test-action
+
+    - name: Send Notification
+      uses: docker://alpine:3.18
+      shell: sh
+      run: echo "Sending notification..."

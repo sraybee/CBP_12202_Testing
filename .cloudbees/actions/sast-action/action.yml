@@ -1,0 +1,17 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: action
+name: sast-action
+description: Runs static application security testing (nested action called by security-action)
+
+runs:
+  using: composite
+  steps:
+    - name: Analyze Source Code
+      uses: docker://alpine:3.18
+      shell: sh
+      run: echo "Running SAST..."
+
+    - name: Generate Security Report
+      uses: docker://alpine:3.18
+      shell: sh
+      run: echo "Generating report..."

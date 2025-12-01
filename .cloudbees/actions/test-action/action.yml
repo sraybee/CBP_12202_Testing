@@ -1,0 +1,17 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: action
+name: test-action
+description: Runs tests (nested action called by build-action)
+
+runs:
+  using: composite
+  steps:
+    - name: Execute Test Suite
+      uses: docker://node:18-alpine
+      shell: sh
+      run: echo "Running tests..."
+
+    - name: Generate Coverage Report
+      uses: docker://node:18-alpine
+      shell: sh
+      run: echo "Generating coverage..."
