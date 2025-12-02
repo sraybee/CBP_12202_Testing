@@ -1,0 +1,21 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: Nico
+on:
+  push:
+    branches:
+      - "**"
+  workflow_dispatch:
+jobs:
+  build:
+    steps:
+      - name: Setup and Build Project
+        uses: ./.cloudbees/actions/build-action
+      - name: Deploy to Development
+        uses: ./.cloudbees/actions/deploy-action
+      - name: Run End-to-End Tests
+        uses: ./.cloudbees/actions/testing-action
+      - name: Security Audit and Scan
+        uses: ./.cloudbees/actions/security-action
+      - name: Deploy to Production
+        uses: ./.cloudbees/actions/production-deploy-action
