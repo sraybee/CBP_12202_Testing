@@ -17,7 +17,6 @@ jobs:
         shell: sh
         run: |
           echo "Building the project..."
-          sleep 10
 
       - name: Checkout Repo Feature
         uses: cloudbees-io/checkout@v1
