@@ -13,9 +13,26 @@ jobs:
         uses: cloudbees-io/checkout@v1
 
       - name: After Now 9th December Changes Went To Prod
-        uses: docker://alpine:3.18
+        uses: docker://alpine:3.19
         shell: sh
-        run: echo "Building the project..."
+        run: |
+          echo "Building the project..."
+          sleep 10
 
       - name: Checkout Repo Feature
         uses: cloudbees-io/checkout@v1
+
+      - name: Run Tests
+        uses: docker://alpine:3.20
+        shell: sh
+        run: echo "Running tests..."
+
+      - name: Build Artifacts
+        uses: docker://alpine:3.21
+        shell: sh
+        run: echo "Building artifacts..."
+
+      - name: Deploy Application
+        uses: docker://alpine:latest
+        shell: sh
+        run: echo "Deploying application..."
