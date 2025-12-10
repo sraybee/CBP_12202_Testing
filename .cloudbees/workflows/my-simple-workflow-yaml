@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     steps:
-      - name: Checkout Step A
+      - name: Checkout Step A1
         uses: cloudbees-io/checkout@v1
 
       - name: Run Build
@@ -17,5 +17,5 @@ jobs:
         shell: sh
         run: echo "Building the project..."
 
-      - name: Checkout Step B
+      - name: Checkout Step B1
         uses: cloudbees-io/checkout@v1
