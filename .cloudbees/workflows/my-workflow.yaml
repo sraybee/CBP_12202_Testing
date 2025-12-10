@@ -5,31 +5,27 @@ on:
   push:
     branches:
       - "**"
+  workflow_dispatch:
 jobs:
   build:
     steps:
       - name: Checkout Repo Main
         uses: cloudbees-io/checkout@v1
-
       - name: After Now 9th December Changes Went To Prod
         uses: docker://alpine:3.19
         shell: sh
         run: |
           echo "Building the project..."
-
       - name: Checkout Repo Feature
         uses: cloudbees-io/checkout@v1
-
       - name: Run Tests
         uses: docker://alpine:3.20
         shell: sh
         run: echo "Running tests..."
-
       - name: Build Artifacts
         uses: docker://alpine:3.21
         shell: sh
         run: echo "Building artifacts..."
-
       - name: Deploy Application
         uses: docker://alpine:latest
         shell: sh
