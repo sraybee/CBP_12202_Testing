@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     steps:
-      - name: Checkout Repo Main
+      - name: Checkout Step A
         uses: cloudbees-io/checkout@v1
 
       - name: Run Build
@@ -17,5 +17,5 @@ jobs:
         shell: sh
         run: echo "Building the project..."
 
-      - name: Checkout Repo Feature
+      - name: Checkout Step B
         uses: cloudbees-io/checkout@v1
