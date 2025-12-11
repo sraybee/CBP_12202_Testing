@@ -1,14 +1,14 @@
 apiVersion: automation.cloudbees.io/v1alpha1
 kind: workflow
-name: example-workflow
+name: kaniko-action-fallback-test
 on:
   workflow_dispatch:
 jobs:
-  demo-job:
+  kaniko-test-job:
     steps:
-      # 1. Step with user-defined name and action (step name takes priority)
-      - name: My Custom Step Name
-        uses: cloudbees-io/checkout@v1
+      # 1. Step with user-defined name (should show this name)
+      - name: Build with Kaniko (named)
+        uses: ./ # local kaniko action
 
-      # 2. Step with no name, only action (action's internal name is shown)
-      - uses: cloudbees-io/configure-ecr-credentials@v1
+      # 2. Step with no name, only action (should show action's internal name from action.yml)
+      - uses: ./
