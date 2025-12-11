@@ -10,4 +10,4 @@ jobs:
         uses: cloudbees-io/checkout@v1
 
       - name: jfrog-actions-workflow-upload-file
-        uses: cloudbees-io/checkout@v1
+        uses: cloudbees-io/jfrog-artifactory-upload-file@v1
