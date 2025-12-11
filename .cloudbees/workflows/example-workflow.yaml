@@ -1,0 +1,14 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: example-workflow
+on:
+  workflow_dispatch:
+jobs:
+  demo-job:
+    steps:
+      # 1. Step with user-defined name and action (step name takes priority)
+      - name: My Custom Step Name
+        uses: cloudbees-io/checkout@v1
+
+      # 2. Step with no name, only action (action's internal name is shown)
+      - uses: cloudbees-io/configure-ecr-credentials@v1
