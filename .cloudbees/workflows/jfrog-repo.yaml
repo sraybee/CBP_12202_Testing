@@ -9,5 +9,8 @@ jobs:
       - name: Step A
         uses: cloudbees-io/checkout@v1
 
+      - name: Configure container registry for ECR
+        uses: cloudbees-io/configure-ecr-credentials@v1
+
       - name: Step B
         uses: cloudbees-io/checkout@v1
