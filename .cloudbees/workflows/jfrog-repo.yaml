@@ -1,0 +1,13 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: jfrog-repo
+on:
+  workflow_dispatch:
+jobs:
+  jfrog-repo-job:
+    steps:
+      - name: checkout-source-code
+        uses: cloudbees-io/checkout@v1
+
+      - name: jfrog-actions-workflow-upload-file
+        uses: cloudbees-io/checkout@v1
