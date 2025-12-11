@@ -11,3 +11,9 @@ jobs:
 
       - name: jfrog-actions-workflow-upload-file
         uses: cloudbees-io/jfrog-artifactory-upload-file@v1
+        with:
+          url: ${{ vars.JFROG_URL }}
+          username: ${{ vars.JFROG_ACTIONS_USERNAME }}
+          password: ${{ secrets.JFROG_ACTIONS_PASSWORD }}
+          file-path: ${{ cloudbees.workspace }}/test/jfrog_repo_test.zip
+          artifactory-path: example-repo-local/jfrogtest/test.zip
