@@ -6,11 +6,11 @@ on:
 jobs:
   my-simple-job:
     steps:
-      - name: Step A
+      - name: Step A101
         uses: cloudbees-io/checkout@v1
 
       - name: Configure container registry for ECR
         uses: cloudbees-io/configure-ecr-credentials@v1
 
-      - name: Step B
+      - name: Step B202
         uses: cloudbees-io/checkout@v1
